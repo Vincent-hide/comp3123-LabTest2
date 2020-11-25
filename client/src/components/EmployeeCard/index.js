@@ -63,7 +63,7 @@ export const EmployeeCard = (props) => {
           <IconButton aria-label="delete">
             <SystemUpdateAltIcon />
           </IconButton>
-          <IconButton aria-label="delete">
+          <IconButton aria-label="delete" onClick={() => props.handleDelete(id)}>
             <DeleteOutlineIcon color="secondary" />
           </IconButton>
         </div>

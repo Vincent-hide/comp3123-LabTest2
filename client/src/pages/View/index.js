@@ -1,13 +1,32 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
-import {EmployeeContext} from "../../components/ContextApi";
 
 import {Grid, Typography} from "@material-ui/core";
 
 import {EmployeeCard} from "../../components/EmployeeCard/";
 
 export const View = () => {
-  const {employees, loading} = useContext(EmployeeContext);
+  const [loading, setLoading] = useState(true);
+  const [employees, setEmployees] = useState({});
+
+  useEffect(() => {
+    axios.get("http://localhost:9090/api/v1/employees")
+      .then(res => {
+        setEmployees(res.data);
+        setLoading(false);
+      })
+      .catch(err => console.log(err))
+  }, []);
+
+  const handleDelete = id => {
+    axios.delete("http://localhost:9090/api/v1/employees/" + id)
+      .then(res => {
+        console.log("delete success");
+        // console.log(employees.filter(emp => emp.id !== id))
+        setEmployees(employees.filter(emp => emp.id !== id))
+      })
+      .catch(err => console.log(err))
+  }
 
   return (
     <div>
@@ -21,7 +40,7 @@ export const View = () => {
               {
                 employees.map(employee => (
                   <Grid container key={employee.id} item sm={4} align="center" justify="center">
-                    <EmployeeCard employee={employee}/>
+                    <EmployeeCard handleDelete={handleDelete} employee={employee}/>
                   </Grid>
                 ))
               }
