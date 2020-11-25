@@ -40,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const EmployeeCard = props => {
+export const EmployeeCard = (props) => {
+  const {employee: {id, firstName, lastName, emailId}} = props;
   const classes = useStyles();
   const theme = useTheme();
 
@@ -49,21 +50,21 @@ export const EmployeeCard = props => {
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
-            Live From Space
+            {firstName} {lastName}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            Mac Miller
+            {emailId}
           </Typography>
         </CardContent>
         <div className={classes.controls}>
-          <IconButton aria-label="previous">
-            {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
+          <IconButton aria-label="update">
+            <SettingsApplicationsIcon />
           </IconButton>
-          <IconButton aria-label="play/pause">
-            <PlayArrowIcon className={classes.playIcon} />
+          <IconButton aria-label="delete">
+            <SystemUpdateAltIcon />
           </IconButton>
-          <IconButton aria-label="next">
-            {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
+          <IconButton aria-label="delete">
+            <DeleteOutlineIcon color="secondary" />
           </IconButton>
         </div>
       </div>

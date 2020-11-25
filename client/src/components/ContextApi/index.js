@@ -14,10 +14,19 @@ export const EmployeeProvider = props => {
         setLoading(false);
       })
       .catch(err => console.log(err))
-  }, [])
+  }, []);
+
+  const handleDelete = id => {
+    axios.delete(`http://localhost:9090/api/v1/employees/${id}`)
+      .then(res => {
+        console.log("DELETED");
+        // setEmployees()
+      })
+      .catch(err => console.log("DELETED"))
+  }
 
   return (
-    <EmployeeContext.Provider value={[employees, setEmployees, loading]}>
+    <EmployeeContext.Provider value={{employees, setEmployees, loading, handleDelete}}>
       {props.children}
     </EmployeeContext.Provider>
   )

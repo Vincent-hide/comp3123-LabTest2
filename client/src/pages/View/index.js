@@ -4,12 +4,10 @@ import {EmployeeContext} from "../../components/ContextApi";
 
 import {Grid, Typography} from "@material-ui/core";
 
-import {EmployeeCard} from "../../components/EmployeeCard";
+import {EmployeeCard} from "../../components/EmployeeCard/";
 
-const Home = () => {
-  const [employees, setEmployees, loading] = useContext(EmployeeContext);
-
-  console.log(loading)
+export const View = () => {
+  const {employees, loading} = useContext(EmployeeContext);
 
   return (
     <div>
@@ -22,7 +20,7 @@ const Home = () => {
             <>
               {
                 employees.map(employee => (
-                  <Grid container item md={4} align="center" justify="center">
+                  <Grid container key={employee.id} item sm={4} align="center" justify="center">
                     <EmployeeCard employee={employee}/>
                   </Grid>
                 ))
@@ -34,5 +32,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;

@@ -1,5 +1,6 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "../../pages/Home";
+import {View} from "../../pages/View";
+import {Create} from "../../pages/Create";
 import {Nav} from "../Navbar"
 
 import { CssBaseline } from '@material-ui/core';
@@ -10,11 +11,8 @@ const App = () => {
       <CssBaseline />
       <Nav />
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/student" component={Home} />
-        <Route exact path="/student/:id" component={Home} />
-        <Route exact path="/student/add" component={Home} />
-        <Route exact path="/student/edit/:id" component={Home} />
+        <Route exact path="/" component={View} />
+        <Route exact path="/add" component={Create} />
       </Switch>
     </BrowserRouter>
   );

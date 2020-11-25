@@ -1,11 +1,10 @@
 import React from "react";
+import {Grid, TextField} from "@material-ui/core";
 
-const Form = () => {
+export const Form = ({field}) => {
   return (
-    <div>
-      <h1>Form</h1>
-    </div>
+    <Grid container item>
+      <TextField fullWidth label={field} variant="outlined"/>
+    </Grid>
   );
 };
-
-export default Form;
